@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
-import { updateRanking } from "../services/updateRanking";
+
 
 export default function Admin() {
   const { user } = useAuth();
@@ -81,7 +81,7 @@ export default function Admin() {
   }
 
   // recalcula ranking
-  await updateRanking();
+  await supabase.rpc("recalculate_ranking");
 
   // recarrega partidas
   await loadMatches();
