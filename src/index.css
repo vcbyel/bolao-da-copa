@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import url('https://googleapis.com');
+body {
+    background: #005391; /* Cor de segurança para navegadores antigos */
+    background: linear-gradient(135deg, #005391 0%, #00355E 100%);
+    background-attachment: fixed; /* Mantém o fundo fixo ao rolar a página */
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+
+
+
+h1, h2 ul li{
+    font-family: 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    text-transform: uppercase; /* Estilo esportivo */
+    letter-spacing: -1px;
+}
+
+p, span, table {
+    font-family: 'Inter', sans-serif;
+    color: #E0E0E0;
+}
+
+.placar {
+    color: #FFD700; /* Destaque para os números */
+    font-weight: bold;
+}
+
+li {
+    border-radius: 8px;
+}
+
+li.selected {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
