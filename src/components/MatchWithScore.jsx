@@ -1,49 +1,65 @@
-import { useBets } from "../contexts/BetContext";
 import BetButton from "./BetButton";
 import ScoreSelector from "./ScoreSelector";
 
 import { useMatches } from "../hooks/useMatches";
 
 export default function MatchWithScore({ match }) {
-  const { getBet } = useBets();
-  const bet = getBet(match.id);
-  
   const { matches } = useMatches();
 
-  const dbMatch = matches.find((m) => m.id === match.id);
+  const dbMatch = matches?.find((m) => m.id === match.id);
   const currentStatus = dbMatch?.status || "scheduled";
+
   // Formatar data
-  const formatData = (data) => {
-    const [ano, mes, dia] = data.split("-");
-    return `${dia}/${mes}`;
+  const formatData = (dateString) => {
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString("pt-BR");
   };
-  console.log(match.id, dbMatch);
+
+  const formatHora = (dateString) => {
+    const date = new Date(dateString);
+
+    return date.toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <div className="bg-gray-700 p-4 rounded-lg mb-4 border-2 border-gray-600 hover:border-yellow-400 transition">
       {/* Data e Hora */}
       <div className="text-xs text-gray-300 mb-2 flex gap-2">
-        <span>📅 {formatData(match.data)}</span>
-        <span>⏰ {match.hora}</span>
+        <span>📅 {match.match_date ? formatData(match.match_date) : "--"}</span>
+
+        <span>⏰ {match.match_date ? formatHora(match.match_date) : "--"}</span>
       </div>
 
       {/* Times */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2 flex-1">
-          <img
-            src={match.homeFlag}
-            alt={match.home}
-            className="w-6 h-6 rounded"
-          />
-          <span className="font-semibold text-white">{match.home}</span>
+          {match.home_flag ? (
+            <img
+              src={match.home_flag}
+              alt={match.home_team}
+              className="w-6 h-6 rounded"
+            />
+          ) : (
+            <div className="w-6 h-6 flex items-center justify-center">🏆</div>
+          )}
+          <span className="font-semibold text-white">{match.home_team}</span>
         </div>
 
-        <div className="flex-1 text-right pr-2">
-          <span className="font-semibold text-white">{match.away}</span>
-          <img
-            src={match.awayFlag}
-            alt={match.away}
-            className="w-6 h-6 rounded inline-block ml-2"
-          />
+        <div className="flex items-center justify-end gap-2 flex-1">
+          <span className="font-semibold text-white">{match.away_team}</span>
+          {match.away_flag ? (
+            <img
+              src={match.away_flag}
+              alt={match.away_team}
+              className="w-6 h-6 rounded"
+            />
+          ) : (
+            <div className="w-6 h-6 flex items-center justify-center">🏆</div>
+          )}
         </div>
       </div>
       {/* Status da Partida */}
@@ -66,9 +82,9 @@ export default function MatchWithScore({ match }) {
               <p className="text-green-400 font-bold">🏆 Resultado Oficial</p>
 
               <p className="text-white text-lg md:text-xl font-bold mt-2">
-                {match.home} {dbMatch.home_result}
+                {match.home_team} {dbMatch.home_result}
                 {" x "}
-                {dbMatch.away_result} {match.away}
+                {dbMatch.away_result} {match.away_team}
               </p>
             </div>
           </>

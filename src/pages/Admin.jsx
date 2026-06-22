@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
-
+import { advanceWinner } from "../utils/advanceWinner";
 
 export default function Admin() {
   const { user } = useAuth();
@@ -76,18 +76,22 @@ export default function Admin() {
   console.log("ERRO UPDATE:", error);
 
   if (error) {
-    alert("Erro ao salvar!");
-    return;
+  alert("Erro ao salvar!");
+  return;
   }
 
-  // recalcula ranking
-  await supabase.rpc("recalculate_ranking");
+    
 
-  // recarrega partidas
-  await loadMatches();
+    // recalcula ranking
+    await supabase.rpc("recalculate_ranking");
 
-  alert("Resultado salvo com sucesso!");
-}
+    // avança vencedor para próxima fase
+    await advanceWinner(match.id);
+
+    // recarrega partidas
+    await loadMatches();
+
+    alert("Resultado salvo com sucesso!");
 
   // Filtrar partidas pela busca
   const filteredMatches = matches.filter((match) => {
@@ -108,6 +112,13 @@ export default function Admin() {
 
     return matchSearch && matchTab;
   });
+
+  if (match.home_result === match.away_result) {
+  console.log("Empate detectado.");
+  return;
+}
+
+  if (!match.winner_to) return;
 
   if (isAdmin === null) {
     return <div>Carregando...</div>;
@@ -323,4 +334,4 @@ export default function Admin() {
       </div>
     </div>
    );
-}
+} }

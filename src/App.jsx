@@ -5,7 +5,6 @@ import { useAuth } from "./contexts/AuthContext";
 import { useBets } from "./contexts/BetContext";
 import Admin from "./pages/Admin";
 import Avos16 from "./pages/Avos16";
-import Avos32 from "./pages/Avos32";
 import Final from "./pages/Final";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -18,6 +17,7 @@ import Rodada1 from "./pages/Rodada1";
 import Rodada2 from "./pages/Rodada2";
 import Rodada3 from "./pages/Rodada3";
 import SemiFinal from "./pages/SemiFinal";
+import Classificacao from "./pages/Classificacao";
 
 function App() {
   const { user, loading } = useAuth();
@@ -40,7 +40,6 @@ function App() {
         <Route path="/rodada1" element={<Rodada1 />} />
         <Route path="/rodada2" element={<Rodada2 />} />
         <Route path="/rodada3" element={<Rodada3 />} />
-        <Route path="/32avos" element={<Avos32 />} />
         <Route path="/16avos" element={<Avos16 />} />
         <Route path="/oitavas" element={<Oitavas />} />
         <Route path="/quartas" element={<Quartas />} />
@@ -48,6 +47,7 @@ function App() {
         <Route path="/final" element={<Final />} />
         <Route path="/perfil" element={<Profile />} />
         <Route path="/ranking" element={<Ranking />} />
+        <Route path="/classificacao" element={<Classificacao />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/minhas-apostas" element={<MinhasApostas />} />
       </Routes>

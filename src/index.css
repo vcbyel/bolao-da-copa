@@ -1,9 +1,10 @@
 @import "tailwindcss";
-@import url('https://googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
 body {
-    background: #005391; /* Cor de segurança para navegadores antigos */
+    background: #005391;
     background: linear-gradient(135deg, #005391 0%, #00355E 100%);
-    background-attachment: fixed; /* Mantém o fundo fixo ao rolar a página */
+    background-attachment: fixed;
     min-height: 100vh;
     margin: 0;
 }

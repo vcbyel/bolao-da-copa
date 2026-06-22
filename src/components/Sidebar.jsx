@@ -89,9 +89,7 @@ export default function Sidebar() {
 
           <li className="mt-6 mb-4 ml-3 font-semibold">Fase Mata-Mata</li>
 
-          <Link to="/32avos">
-            <li className="p-2 hover:bg-gray-800 text-center">32 avos</li>
-          </Link>
+          
 
           <Link to="/16avos">
             <li className="p-2 hover:bg-gray-800 text-center">16 avos</li>
@@ -130,8 +128,13 @@ export default function Sidebar() {
           >
             🏆 Ranking
           </Link>
-          <Link to="/minhas-apostas" className="menu-item">
-            🎯 Minhas Apostas
+          <Link
+            to="/Classificacao"
+            className="block p-3 hover:bg-slate-700 rounded-lg">
+             📊 Classificação
+          </Link>
+          <Link to="/minhas-apostas" className="block p-3 hover:bg-slate-700 rounded-lg">
+             🎯 Minhas Apostas
           </Link>
 
           <hr className="border-gray-700 my-4" />
