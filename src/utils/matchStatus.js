@@ -1,14 +1,18 @@
 export function getMatchStatus(match) {
+  if (!match?.match_date) {
+    return "scheduled";
+  }
+
   const now = new Date();
 
-  const startDate = new Date(
-    `${match.data}T${match.hora}:00`
-  );
+  const startDate = new Date(match.match_date);
+  
 
   const endDate = new Date(
     startDate.getTime() + 2 * 60 * 60 * 1000
   );
 
+  
   if (now < startDate) {
     return "scheduled";
   }
@@ -17,5 +21,6 @@ export function getMatchStatus(match) {
     return "live";
   }
 
+  
   return "finished";
 }
