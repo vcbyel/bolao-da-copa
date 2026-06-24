@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import { generateGroupStandings } from "../utils/generateGroupStandings";
+import { getBestThirdPlaced } from "../utils/getBestThirdPlaced";
+import { getQualifiedTeams } from "../utils/getQualifiedTeams";
+import { updateRoundOf32 } from "../utils/updateRoundOf32";
 
 export default function Classificacao() {
+  console.log("CLASSIFICACAO RENDERIZOU");
   const [groups, setGroups] = useState({});
+  const [qualifiedTeams, setQualifiedTeams] = useState({});
+  console.log(qualifiedTeams);
+  const [bestThirds, setBestThirds] = useState([]);
 
   useEffect(() => {
     loadStandings();
@@ -18,8 +25,27 @@ export default function Classificacao() {
     }
 
     const standings = generateGroupStandings(data);
+
+    const thirds = getBestThirdPlaced(standings);
+
+    setBestThirds(thirds);
+
+    const qualified = getQualifiedTeams(standings);
+
+    await updateRoundOf32(qualified);
+
+    setQualifiedTeams(qualified);
+
     setGroups(standings);
   }
+
+  const isBestThird = (group) => {
+    return bestThirds.some((team) => team.group === group);
+  };
+
+  const isDirectQualified = (position) => {
+    return position <= 2;
+  };
 
   return (
     <div className="max-w-7xl mx-auto p-6">
@@ -80,9 +106,9 @@ export default function Classificacao() {
                       <tr
                         key={team.team}
                         className={`border-b border-slate-700 ${
-                          index < 2
+                          isDirectQualified(index + 1)
                             ? "bg-green-900/30"
-                            : index === 2
+                            : index === 2 && isBestThird(groupName)
                               ? "bg-yellow-900/30"
                               : "bg-red-900/20"
                         }`}

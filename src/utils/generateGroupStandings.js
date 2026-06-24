@@ -81,8 +81,7 @@ export function generateGroupStandings(matches) {
       });
   });
 
-  console.log("GRUPO B");
-console.table(groups["B"]);
+  
 
 
  
