@@ -7,7 +7,7 @@ export default function GroupCard2({ grupo}) {
       <div className="mb-4 pb-3 border-b-2 border-gray-700">
         <h2 className="text-2xl font-bold text-white mb-2">{grupo.nome}</h2>
         <div className="grid grid-cols-2 gap-1 text-xs">
-          {grupo.times.map((time) => (
+          {grupo.times && grupo.times.map((time) => (
             <div key={time.id} className="text-gray-300 text-center">
               <div className="text-yellow-400">{time.nome}</div>
             </div>

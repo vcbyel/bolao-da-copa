@@ -1,7 +1,7 @@
 import MatchWithScore from "./MatchWithScore";
 
 export default function GroupCard({ grupo }) {
-  console.log("GRUPO RECEBIDO:", grupo);
+  
   return (
     <div className="bg-gray-800 rounded-lg p-4 border-2 border-gray-700 hover:border-yellow-400 transition shadow-lg">
       {/* Header do Grupo */}

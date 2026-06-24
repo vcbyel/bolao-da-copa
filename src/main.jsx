@@ -7,6 +7,12 @@ import { BetProvider } from './contexts/BetContext';
 import { RankingProvider } from './contexts/RankingContext.jsx';
 import './index.css';
 
+if (import.meta.env.PROD) {
+  console.log = () => {};
+  console.warn = () => {};
+  console.info = () => {};
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
@@ -19,11 +25,4 @@ createRoot(document.getElementById('root')).render(
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>
-  
 )
-if (import.meta.env.PROD) {
-  console.log = () => {};
-  console.error = () => {};
-  console.warn = () => {};
-  console.info = () => {};
-}

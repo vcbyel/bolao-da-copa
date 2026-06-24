@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import { useAuth } from "./contexts/AuthContext";
@@ -23,11 +23,15 @@ function App() {
   const { user, loading } = useAuth();
   const { loadBets } = useBets();
 
-  useEffect(() => {
+  const loadUserBets = useCallback(() => {
     if (user) {
       loadBets(user.id);
     }
-  }, [user]);
+  }, [user, loadBets]);
+
+  useEffect(() => {
+    loadUserBets();
+  }, [loadUserBets]);
 
   if (loading) return <div>Carregando...</div>;
 

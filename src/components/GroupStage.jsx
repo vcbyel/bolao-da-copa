@@ -4,8 +4,9 @@ import GroupCard from "./GroupCard";
 import { groupMatches } from "../utils/groupMatches";
 
 export default function GroupStage({ title, rounds }) {
+  
   const [groups, setGroups] = useState({});
-
+  console.log("GRUPO RECEBIDO:", groups);
   useEffect(() => {
     loadMatches();
   }, []);

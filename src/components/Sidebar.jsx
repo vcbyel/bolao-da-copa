@@ -129,7 +129,7 @@ export default function Sidebar() {
             🏆 Ranking
           </Link>
           <Link
-            to="/Classificacao"
+            to="/classificacao"
             className="block p-3 hover:bg-slate-700 rounded-lg">
              📊 Classificação
           </Link>

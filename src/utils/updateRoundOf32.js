@@ -31,6 +31,8 @@ export async function updateRoundOf32(qualifiedTeams) {
       .update({
         home_team: homeTeam.team,
         away_team: awayTeam.team,
+        home_flag: homeTeam.flag || null,
+        away_flag: awayTeam.flag || null,
       })
       .eq("id", matchId)
       .select();

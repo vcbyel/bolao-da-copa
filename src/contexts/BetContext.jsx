@@ -72,8 +72,18 @@ const hasBet = (matchId) => {
 
   const getTotalBets = () => Object.keys(bets).length;
 
+  const clearAllBets = () => {
+    const unconfirmed = {};
+    Object.entries(bets).forEach(([matchId, bet]) => {
+      if (bet.confirmed) {
+        unconfirmed[matchId] = bet;
+      }
+    });
+    setBets(unconfirmed);
+  };
+
   return (
-    <BetContext.Provider value={{ bets, updateBet, confirmBet, getBet, getAllBets, getTotalBets, hasBet, loadBets, }}>
+    <BetContext.Provider value={{ bets, updateBet, confirmBet, getBet, getAllBets, getTotalBets, hasBet, loadBets, clearAllBets, }}>
       {children}
     </BetContext.Provider>
   );

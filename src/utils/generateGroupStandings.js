@@ -3,6 +3,7 @@ export function generateGroupStandings(matches) {
 
   matches.forEach((match) => {
     if (match.status !== "finished") return;
+    if (match.stage && match.stage !== "GROUP") return;
 
     const group = match.id.charAt(0).toUpperCase();
 
@@ -16,6 +17,7 @@ export function generateGroupStandings(matches) {
     if (!groups[group][home]) {
       groups[group][home] = {
         team: home,
+        flag: match.home_flag || null,
         points: 0,
         wins: 0,
         draws: 0,
@@ -29,6 +31,7 @@ export function generateGroupStandings(matches) {
     if (!groups[group][away]) {
       groups[group][away] = {
         team: away,
+        flag: match.away_flag || null,
         points: 0,
         wins: 0,
         draws: 0,

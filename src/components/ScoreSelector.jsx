@@ -7,9 +7,7 @@ export default function ScoreSelector({ matchId, matchData }) {
 
   const bet = getBet(matchId);
 
-  const status = getMatchStatus(matchData);
-
-  
+  const status = matchData?.status || getMatchStatus(matchData);
 
   const isLocked = bet?.confirmed ||
   status === "live" ||

@@ -1,24 +1,16 @@
 import BetButton from "./BetButton";
 import ScoreSelector from "./ScoreSelector";
 
-import { useMatches } from "../hooks/useMatches";
-
 export default function MatchWithScore({ match }) {
-  const { matches } = useMatches();
+  const currentStatus = match?.status || "scheduled";
 
-  const dbMatch = matches?.find((m) => m.id === match.id);
-  const currentStatus = dbMatch?.status || "scheduled";
-
-  // Formatar data
   const formatData = (dateString) => {
     const date = new Date(dateString);
-
     return date.toLocaleDateString("pt-BR");
   };
 
   const formatHora = (dateString) => {
     const date = new Date(dateString);
-
     return date.toLocaleTimeString("pt-BR", {
       hour: "2-digit",
       minute: "2-digit",
@@ -74,7 +66,7 @@ export default function MatchWithScore({ match }) {
           </p>
         )}
 
-        {dbMatch?.status === "finished" && (
+        {currentStatus === "finished" && (
           <>
             <p className="text-red-500 font-bold">🔒 JOGO ENCERRADO</p>
 
@@ -82,9 +74,9 @@ export default function MatchWithScore({ match }) {
               <p className="text-green-400 font-bold">🏆 Resultado Oficial</p>
 
               <p className="text-white text-lg md:text-xl font-bold mt-2">
-                {match.home_team} {dbMatch.home_result}
+                {match.home_team} {match.home_result}
                 {" x "}
-                {dbMatch.away_result} {match.away_team}
+                {match.away_result} {match.away_team}
               </p>
             </div>
           </>

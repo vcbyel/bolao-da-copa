@@ -20,6 +20,7 @@ export async function seedMatches() {
         away_flag: match.awayFlag,
         match_date: `${match.data} ${match.hora}:00`,
         status: "scheduled",
+        stage: "GROUP",
       });
     });
   });

@@ -3,13 +3,10 @@ import { supabase } from "../lib/supabase";
 import { generateGroupStandings } from "../utils/generateGroupStandings";
 import { getBestThirdPlaced } from "../utils/getBestThirdPlaced";
 import { getQualifiedTeams } from "../utils/getQualifiedTeams";
-import { updateRoundOf32 } from "../utils/updateRoundOf32";
 
 export default function Classificacao() {
-  console.log("CLASSIFICACAO RENDERIZOU");
   const [groups, setGroups] = useState({});
   const [qualifiedTeams, setQualifiedTeams] = useState({});
-  console.log(qualifiedTeams);
   const [bestThirds, setBestThirds] = useState([]);
 
   useEffect(() => {
@@ -17,7 +14,10 @@ export default function Classificacao() {
   }, []);
 
   async function loadStandings() {
-    const { data, error } = await supabase.from("matches").select("*");
+    const { data, error } = await supabase
+      .from("matches")
+      .select("*")
+      .eq("stage", "GROUP");
 
     if (error) {
       console.error(error);
@@ -31,8 +31,6 @@ export default function Classificacao() {
     setBestThirds(thirds);
 
     const qualified = getQualifiedTeams(standings);
-
-    await updateRoundOf32(qualified);
 
     setQualifiedTeams(qualified);
 

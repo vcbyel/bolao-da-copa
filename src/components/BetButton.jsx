@@ -36,13 +36,13 @@ export default function BetButton({ matchId, matchData }) {
 
     const { error } = await supabase
       .from("bets")
-      .insert({
+      .upsert({
         user_id: user.id,
         match_id: matchId,
         home_score: bet.home,
         away_score: bet.away,
         confirmed: true,
-      });
+      }, { onConflict: "user_id,match_id" });
 
     if (error) {
   console.error(error);
