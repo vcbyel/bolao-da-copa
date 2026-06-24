@@ -29,7 +29,7 @@ export default function BetButton({ matchId, matchData }) {
     }
 
     const confirmation = window.confirm(
-      `Confirmar aposta: ${matchData.home} ${bet.home} x ${bet.away} ${matchData.away}?`
+      `Confirmar aposta: ${matchData.home_team} ${bet.home} x ${bet.away} ${matchData.away_team}?`
     );
 
     if (!confirmation) return;

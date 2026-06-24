@@ -6,6 +6,7 @@ export default function ScoreSelector({ matchId, matchData }) {
   const { updateBet, getBet } = useBets();
 
   const bet = getBet(matchId);
+  console.log("BET ATUAL", matchId, bet);
 
   const status = matchData?.status || getMatchStatus(matchData);
 
