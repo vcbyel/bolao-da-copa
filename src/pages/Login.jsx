@@ -30,7 +30,6 @@ export default function Login() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
-
       {/* Imagem de fundo */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -45,27 +44,18 @@ export default function Login() {
 
       {/* Card Login */}
       <div className="relative z-10 w-full max-w-md p-8">
-
         <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl">
+          <div className="flex flex-col items-center mb-8">
+            <img src="/logo.png" alt="Bolão da Copa" className="w-40 mb-4" />
 
-          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-white">Bolão da Copa</h1>
 
-            <h1 className="text-5xl font-bold text-white">
-              ⚽ Bolão
-            </h1>
-
-            <h2 className="text-5xl font-bold text-green-500">
-              da Copa
-            </h2>
-
-            <p className="text-slate-300 mt-4">
-              Faça seus palpites e acompanhe o ranking em tempo real.
+            <p className="text-slate-400">
+              Faça seus palpites e dispute o ranking
             </p>
-
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-
             <input
               type="email"
               placeholder="Seu e-mail"
@@ -88,12 +78,9 @@ export default function Login() {
             >
               {isRegister ? "Criar Conta" : "Entrar"}
             </button>
-
           </form>
 
-          <div className="my-4 text-center text-slate-400">
-            ou
-          </div>
+          <div className="my-4 text-center text-slate-400">ou</div>
 
           <button
             onClick={loginGoogle}
@@ -103,22 +90,15 @@ export default function Login() {
           </button>
 
           <div className="mt-6 text-center">
-
             <button
               onClick={() => setIsRegister(!isRegister)}
               className="text-green-400 hover:text-green-300"
             >
-              {isRegister
-                ? "Já possui conta? Entrar"
-                : "Criar uma conta"}
+              {isRegister ? "Já possui conta? Entrar" : "Criar uma conta"}
             </button>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }

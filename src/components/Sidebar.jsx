@@ -15,20 +15,31 @@ export default function Sidebar() {
       >
         {menuAberto ? "✕" : "☰"}
       </button>
+      {menuAberto && (
+        <div
+          className="fixed inset-0 bg-black/70 z-30 md:hidden"
+          onClick={() => setMenuAberto(false)}
+        />
+      )}
 
       {/* Sidebar */}
       <div
         className={`
-  fixed
-  top-0 left-0
-  h-screen
-  w-64
-  bg-gray-900 text-white
-  transition-transform duration-300
-  z-40
-  ${menuAberto ? "translate-x-0" : "-translate-x-full"}
-  md:translate-x-0
-`}
+    fixed
+    top-0 left-0
+    h-screen
+    w-[280px]
+    max-w-[85vw]
+    bg-gray-900
+    text-white
+    flex
+    flex-col
+    transition-transform
+    duration-300
+    z-40
+    ${menuAberto ? "translate-x-0" : "-translate-x-full"}
+    md:translate-x-0
+  `}
       >
         {/* Usuário */}
         <div className="p-4 border-b border-gray-700">
@@ -60,98 +71,108 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <ul className="w-full py-4">
-          <Link to="/">
-            <li className="mt-4 mb-4 flex justify-center items-center">
-              <div className="text-center">
-                <h1 className="text-xl font-extrabold text-green-500">BOLÃO</h1>
+        <div className="flex-1 overflow-y-auto">
+          <ul className="w-full py-4">
+            <Link to="/" className="block">
+              <div className="py-6 text-center border-b border-gray-700">
+                <h1 className="text-3xl font-black tracking-wider text-green-500">
+                  BOLÃO
+                </h1>
 
-                <p className="text-sm text-gray-400">Copa 2026</p>
+                <p className="text-xs uppercase tracking-[4px] text-gray-400">
+                  World Cup 2026
+                </p>
               </div>
+            </Link>
+
+            <hr className="border-gray-700" />
+
+            <li className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-yellow-400">
+              Fase de Grupos
             </li>
-          </Link>
 
-          <hr className="border-gray-700" />
+            <Link to="/rodada1">
+              <li className="px-4 py-3 hover:bg-gray-800">Rodada 1</li>
+            </Link>
 
-          <li className="mt-4 mb-4 ml-3 font-semibold">Fase de Grupos</li>
+            <Link to="/rodada2">
+              <li className="px-4 py-3 hover:bg-gray-800">Rodada 2</li>
+            </Link>
 
-          <Link to="/rodada1">
-            <li className="p-2 hover:bg-gray-800 text-center">Rodada 1</li>
-          </Link>
+            <Link to="/rodada3">
+              <li className="px-4 py-3 hover:bg-gray-800">Rodada 3</li>
+            </Link>
 
-          <Link to="/rodada2">
-            <li className="p-2 hover:bg-gray-800 text-center">Rodada 2</li>
-          </Link>
-
-          <Link to="/rodada3">
-            <li className="p-2 hover:bg-gray-800 text-center">Rodada 3</li>
-          </Link>
-
-          <li className="mt-6 mb-4 ml-3 font-semibold">Fase Mata-Mata</li>
-
-          
-
-          <Link to="/16avos">
-            <li className="p-2 hover:bg-gray-800 text-center">16 avos</li>
-          </Link>
-
-          <Link to="/oitavas">
-            <li className="p-2 hover:bg-gray-800 text-center">
-              Oitavas de Final
+            <li className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-yellow-400">
+              Fase Mata-Mata
             </li>
-          </Link>
 
-          <Link to="/quartas">
-            <li className="p-2 hover:bg-gray-800 text-center">
-              Quartas de Final
-            </li>
-          </Link>
+            <Link to="/16avos">
+              <li className="px-4 py-3 hover:bg-gray-800">16 avos</li>
+            </Link>
 
-          <Link to="/semifinal">
-            <li className="p-2 hover:bg-gray-800 text-center">Semi Final</li>
-          </Link>
+            <Link to="/oitavas">
+              <li className="px-4 py-3 hover:bg-gray-800">Oitavas de Final</li>
+            </Link>
 
-          <Link to="/final">
-            <li className="p-2 hover:bg-gray-800 text-center">Final</li>
-          </Link>
-          <hr className="border-gray-700" />
+            <Link to="/quartas">
+              <li className="px-4 py-3 hover:bg-gray-800">Quartas de Final</li>
+            </Link>
 
-          <Link
-            to="/perfil"
-            className="block p-3 hover:bg-slate-700 rounded-lg"
-          >
-            👤 Perfil
-          </Link>
-          <Link
-            to="/ranking"
-            className="block p-3 hover:bg-slate-700 rounded-lg"
-          >
-            🏆 Ranking
-          </Link>
-          <Link
-            to="/classificacao"
-            className="block p-3 hover:bg-slate-700 rounded-lg">
-             📊 Classificação
-          </Link>
-          <Link to="/minhas-apostas" className="block p-3 hover:bg-slate-700 rounded-lg">
-             🎯 Minhas Apostas
-          </Link>
+            <Link to="/semifinal">
+              <li className="px-4 py-3 hover:bg-gray-800">Semi Final</li>
+            </Link>
 
-          <hr className="border-gray-700 my-4" />
+            <Link to="/final">
+              <li className="px-4 py-3 hover:bg-gray-800">Final</li>
+            </Link>
+            <hr className="border-gray-700" />
 
-          <li
-            onClick={logout}
-            className="
-              p-3
-              text-center
-              cursor-pointer
-              hover:bg-red-600
-              transition
-            "
-          >
-            🚪 Sair
-          </li>
-        </ul>
+            <Link
+              to="/perfil"
+              className="block p-3 hover:bg-slate-700 rounded-lg"
+            >
+              👤 Perfil
+            </Link>
+            <Link
+              to="/ranking"
+              onClick={() => setMenuAberto(false)}
+              className="block p-3 hover:bg-slate-700 rounded-lg"
+            >
+              🏆 Ranking
+            </Link>
+            <Link
+              to="/classificacao"
+              className="block p-3 hover:bg-slate-700 rounded-lg"
+            >
+              📊 Classificação
+            </Link>
+            <Link
+              to="/minhas-apostas"
+              className="block p-3 hover:bg-slate-700 rounded-lg"
+            >
+              🎯 Minhas Apostas
+            </Link>
+
+            <hr className="border-gray-700 my-4" />
+          </ul>
+          <div className="border-t border-gray-700 p-4">
+            <button
+              onClick={logout}
+              className="
+                  w-full
+                  bg-red-600
+                  hover:bg-red-700
+                  py-3
+                  rounded-lg
+                  font-semibold
+                  transition
+                "
+            >
+              🚪 Sair
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

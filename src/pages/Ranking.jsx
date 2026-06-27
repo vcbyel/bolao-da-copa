@@ -20,7 +20,25 @@ const myPosition =
 console.log("RANKING STATE:", ranking);
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-white mb-6">🏆 Ranking Geral</h1>
+
+      <div className="flex items-center gap-4 mb-6">
+  <img
+    src="/logo.png"
+    alt="Logo"
+    className="w-16 h-16"
+  />
+
+  <div>
+    <h1 className="text-4xl font-bold">
+      Ranking Geral
+    </h1>
+
+    <p className="text-slate-400">
+      Bolão da Copa 2026
+    </p>
+  </div>
+</div>
+
       {myPosition > 0 && (
         <div className="bg-yellow-500 text-black font-bold rounded-xl p-4 mb-6 shadow-lg">
           🏆 Sua posição atual: #{myPosition}
