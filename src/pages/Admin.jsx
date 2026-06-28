@@ -5,6 +5,7 @@ import { supabase } from "../lib/supabase";
 import { advanceWinner } from "../utils/advanceWinner";
 import { generateGroupStandings } from "../utils/generateGroupStandings";
 import { getQualifiedTeams } from "../utils/getQualifiedTeams";
+import { notifyMatchResult } from "../utils/notify";
 import AdminSidebar from "../components/admin/AdminSidebar";
 import AdminDashboard from "../components/admin/AdminDashboard";
 import AdminMatches from "../components/admin/AdminMatches";
@@ -118,6 +119,16 @@ export default function Admin() {
 
     if (match.stage !== "GROUP" && match.status === "finished") {
       await advanceWinner(match.id);
+    }
+
+    if (match.status === "finished") {
+      await notifyMatchResult(
+        match.id,
+        match.home_team,
+        match.away_team,
+        match.home_result,
+        match.away_result
+      );
     }
 
     await loadMatches();

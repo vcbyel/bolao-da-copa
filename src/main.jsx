@@ -5,6 +5,7 @@ import App from './App.jsx';
 import { AuthProvider } from "./contexts/AuthContext";
 import { BetProvider } from './contexts/BetContext';
 import { RankingProvider } from './contexts/RankingContext.jsx';
+import { NotificationProvider } from './contexts/NotificationContext.jsx';
 import './index.css';
 
 if (import.meta.env.PROD) {
@@ -18,9 +19,11 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <AuthProvider>
         <RankingProvider>
-        <BetProvider>
-          <App />
-        </BetProvider>
+          <NotificationProvider>
+            <BetProvider>
+              <App />
+            </BetProvider>
+          </NotificationProvider>
         </RankingProvider>
       </AuthProvider>
     </BrowserRouter>

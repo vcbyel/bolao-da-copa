@@ -15,14 +15,14 @@ body {
 
 h1, h2 ul li{
     font-family: 'Montserrat', sans-serif;
-    color: #FFFFFF;
+   
     text-transform: uppercase; /* Estilo esportivo */
     letter-spacing: -1px;
 }
 
 p, span, table {
     font-family: 'Inter', sans-serif;
-    color: #E0E0E0;
+    
 }
 
 .placar {

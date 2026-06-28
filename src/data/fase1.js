@@ -1,7 +1,10 @@
 // Fase 1 - Grupos
 export const rodada1 = [
   {
-    
+    home: "ENG",
+    homeFlag: "https://flagcdn.com/gb-eng.svg",
+    away: "CRO",
+    awayFlag: "https://flagcdn.com/hr.svg",
     
   },
   

@@ -18,6 +18,7 @@ import Rodada2 from "./pages/Rodada2";
 import Rodada3 from "./pages/Rodada3";
 import SemiFinal from "./pages/SemiFinal";
 import Classificacao from "./pages/Classificacao";
+import Notifications from "./pages/Notifications";
 
 function App() {
   const { user, loading } = useAuth();
@@ -54,6 +55,7 @@ function App() {
         <Route path="/classificacao" element={<Classificacao />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/minhas-apostas" element={<MinhasApostas />} />
+        <Route path="/notificacoes" element={<Notifications />} />
       </Routes>
     </Layout>
   );

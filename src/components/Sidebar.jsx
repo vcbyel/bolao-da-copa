@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import NotificationBell from "./NotificationBell";
 
 export default function Sidebar() {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -61,13 +62,15 @@ export default function Sidebar() {
       "
             />
 
-            <div>
+            <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-sm">
                 {user?.user_metadata?.full_name || "Usuário"}
               </h3>
 
               <p className="text-xs text-gray-400 truncate">{user?.email}</p>
             </div>
+
+            <NotificationBell />
           </div>
         </div>
 
@@ -152,6 +155,13 @@ export default function Sidebar() {
               className="block p-3 hover:bg-slate-700 rounded-lg"
             >
               🎯 Minhas Apostas
+            </Link>
+            <Link
+              to="/notificacoes"
+              onClick={() => setMenuAberto(false)}
+              className="block p-3 hover:bg-slate-700 rounded-lg"
+            >
+              🔔 Notificações
             </Link>
 
             <hr className="border-gray-700 my-4" />
