@@ -1,0 +1,6 @@
+{
+  "appId": "com.bolao.copa2026",
+  "channel": "production",
+  "version": "1.0.0",
+  "url": "https://bolao-da-copa.vercel.app/updates/update.zip"
+}

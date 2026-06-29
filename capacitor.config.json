@@ -1,0 +1,18 @@
+{
+  "appId": "com.bolao.copa2026",
+  "appName": "Bolão Copa 2026",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#00355E",
+    "allowMixedContent": true
+  },
+  "plugins": {
+    "LiveUpdate": {
+      "appId": "com.bolao.copa2026",
+      "channel": "production"
+    }
+  }
+}

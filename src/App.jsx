@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import { useAuth } from "./contexts/AuthContext";
 import { useBets } from "./contexts/BetContext";
+import { checkForUpdates } from "./utils/liveUpdate";
 import Admin from "./pages/Admin";
 import Avos16 from "./pages/Avos16";
 import Final from "./pages/Final";
@@ -33,6 +34,10 @@ function App() {
   useEffect(() => {
     loadUserBets();
   }, [loadUserBets]);
+
+  useEffect(() => {
+    checkForUpdates();
+  }, []);
 
   if (loading) return <div>Carregando...</div>;
 
